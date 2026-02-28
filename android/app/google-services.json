@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "63331672690",
+    "project_id": "thimar-bb73a",
+    "storage_bucket": "thimar-bb73a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63331672690:android:afc4dfaf7239c50458d8eb",
+        "android_client_info": {
+          "package_name": "com.example.thimar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3u13j0sJWCboFcyyvtvD7iBLZlOQW9cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

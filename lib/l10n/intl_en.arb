@@ -1,0 +1,56 @@
+{
+    "@@locale": "en",
+    "// Login Screen Section": "",
+    "welcomeBack": "Welcome Back",
+    "loginNow": "You can login now",
+    "phoneNumber": "Phone Number",
+    "password": "Password",
+    "forgetPassword": "Forgot Password?",
+    "login": "Login",
+    "enterFullData": "Please enter full data",
+    "dontHaveAccount": "Don't have an account?",
+    "registerNow": "Register Now",
+
+    "// Home Screen Section": "",
+    "categories": "Categories",
+    "viewAll": "View All",
+    "deliveryTo": "Delivery to",
+    "searchHint": "Search for what you want?",
+    "items": "Items",
+    "permanentOffers": "Permanent Offers",
+    "addToCart": "Add to Cart",
+
+    "// Categories Types Section": "",
+    "vegetables": "Vegetables",
+    "fruits": "Fruits",
+    "meat": "Meat",
+    "spices": "Spices",
+    "dates": "Dates",
+    "nuts": "Nuts",
+
+    "// Bottom Navigation Bar": "",
+    "home": "Home",
+    "myOrders": "My Orders",
+    "notifications": "Notifications",
+    "favorites": "Favorites",
+    "myAccount": "My Account",
+
+    "// Profile Screen - Titles": "",
+    "profileTitle": "My Account",
+
+    "// Profile Screen - Data": "",
+    "personalData": "Personal Data",
+    "wallet": "Wallet",
+    "addresses": "Addresses",
+    "payment": "Payment",
+
+    "// Profile Screen - Support": "",
+    "faq": "FAQ",
+    "privacyPolicy": "Privacy Policy",
+    "contactUs": "Contact Us",
+    "complaints": "Complaints & Suggestions",
+    "shareApp": "Share App",
+
+    "// Profile Screen - Settings": "",
+    "logout": "Logout"
+}
