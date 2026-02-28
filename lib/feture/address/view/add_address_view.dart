@@ -107,7 +107,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                     children: [
                       Expanded(
                         child: Text(
-                          context.l10n.addressType,
+                          '  ${context.l10n.addressType}',
                           style: const TextStyle(
                               fontSize: 16,
                               color: Color(0xFF8B8B8B),

@@ -54,6 +54,6 @@
     "location": "Location",
     "description": "description",
     "noAddresses": "There are no addresses",
-    "addressType": "Address Type",
+    "addressType": "address type",
     "addPhoneNumber": "add phoneNumber"
 }

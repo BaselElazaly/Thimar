@@ -367,10 +367,10 @@ class S {
     );
   }
 
-  /// `Address Type`
+  /// `address type`
   String get addressType {
     return Intl.message(
-      'Address Type',
+      'address type',
       name: 'addressType',
       desc: '',
       args: [],
