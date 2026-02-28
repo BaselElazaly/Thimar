@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:thimar/feture/address/view/add_address_view.dart';
+import 'package:thimar/feture/address/view/addresses_view.dart';
 import 'package:thimar/feture/auth/login/view/login_view.dart';
 import 'package:thimar/feture/favorite/view/favorite_view.dart';
 import 'package:thimar/feture/home/view/home_view.dart';
@@ -17,6 +19,8 @@ class Routes {
   static const String notficationsView = '/notfications';
   static const String favoriteView = '/favorite';
   static const String userView = '/user';
+  static const String addressesView = '/addresses';
+  static const String addAddressesView = '/add_Address';
 }
 
 class AppRouter {
@@ -38,6 +42,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const NotficationsView());
       case Routes.userView:
         return MaterialPageRoute(builder: (_) => const UserView());
+      case Routes.addressesView:
+        return MaterialPageRoute(builder: (_) => const AddressesView());
+      case Routes.addAddressesView:
+        return MaterialPageRoute(builder: (_) => const AddAddressView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(body: Center(child: Text('No route defined for ${settings.name}'))),

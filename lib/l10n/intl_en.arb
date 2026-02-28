@@ -10,7 +10,6 @@
     "enterFullData": "Please enter full data",
     "dontHaveAccount": "Don't have an account?",
     "registerNow": "Register Now",
-
     "// Home Screen Section": "",
     "categories": "Categories",
     "viewAll": "View All",
@@ -19,7 +18,7 @@
     "items": "Items",
     "permanentOffers": "Permanent Offers",
     "addToCart": "Add to Cart",
-
+    "price": "Price",
     "// Categories Types Section": "",
     "vegetables": "Vegetables",
     "fruits": "Fruits",
@@ -27,30 +26,34 @@
     "spices": "Spices",
     "dates": "Dates",
     "nuts": "Nuts",
-
     "// Bottom Navigation Bar": "",
     "home": "Home",
     "myOrders": "My Orders",
     "notifications": "Notifications",
     "favorites": "Favorites",
     "myAccount": "My Account",
-
     "// Profile Screen - Titles": "",
     "profileTitle": "My Account",
-
     "// Profile Screen - Data": "",
     "personalData": "Personal Data",
     "wallet": "Wallet",
     "addresses": "Addresses",
     "payment": "Payment",
-
     "// Profile Screen - Support": "",
     "faq": "FAQ",
     "privacyPolicy": "Privacy Policy",
     "contactUs": "Contact Us",
     "complaints": "Complaints & Suggestions",
     "shareApp": "Share App",
-
     "// Profile Screen - Settings": "",
-    "logout": "Logout"
+    "logout": "Logout",
+    "// Adressess Screen": "",
+    "addAddress": "Add Address",
+    "workLocation": "Work",
+    "homeLocation": "Home",
+    "location": "Location",
+    "description": "description",
+    "noAddresses": "There are no addresses",
+    "addressType": "Address Type",
+    "addPhoneNumber": "add phoneNumber"
 }

@@ -22,13 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "addAddress": MessageLookupByLibrary.simpleMessage("إضافة عنوان"),
+    "addPhoneNumber": MessageLookupByLibrary.simpleMessage("أدخل رقم الجوال"),
     "addToCart": MessageLookupByLibrary.simpleMessage("أضف للسلة"),
+    "addressType": MessageLookupByLibrary.simpleMessage("نوع العنوان"),
     "addresses": MessageLookupByLibrary.simpleMessage("العناوين"),
     "categories": MessageLookupByLibrary.simpleMessage("الأقسام"),
     "complaints": MessageLookupByLibrary.simpleMessage("الشكاوي والاقتراحات"),
     "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
     "dates": MessageLookupByLibrary.simpleMessage("التمور"),
     "deliveryTo": MessageLookupByLibrary.simpleMessage("التوصيل إلى"),
+    "description": MessageLookupByLibrary.simpleMessage("الوصف"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
     "enterFullData": MessageLookupByLibrary.simpleMessage(
       "برجاء إدخال البيانات كاملة",
@@ -38,13 +42,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgetPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "fruits": MessageLookupByLibrary.simpleMessage("الفواكه"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "homeLocation": MessageLookupByLibrary.simpleMessage("المنزل"),
     "items": MessageLookupByLibrary.simpleMessage("الأصناف"),
+    "location": MessageLookupByLibrary.simpleMessage("العنوان"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "loginNow": MessageLookupByLibrary.simpleMessage("يمكنك تسجيل الدخول الآن"),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "meat": MessageLookupByLibrary.simpleMessage("اللحوم"),
     "myAccount": MessageLookupByLibrary.simpleMessage("حسابي"),
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتي"),
+    "noAddresses": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد عناوين حالياً",
+    ),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "nuts": MessageLookupByLibrary.simpleMessage("المكسرات"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -52,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permanentOffers": MessageLookupByLibrary.simpleMessage("عروض دائمة"),
     "personalData": MessageLookupByLibrary.simpleMessage("البيانات الشخصية"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الجوال"),
+    "price": MessageLookupByLibrary.simpleMessage("السعر"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "profileTitle": MessageLookupByLibrary.simpleMessage("حسابي"),
     "registerNow": MessageLookupByLibrary.simpleMessage("تسجيل الآن"),
@@ -62,5 +72,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "wallet": MessageLookupByLibrary.simpleMessage("المحفظة"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحباً بك مرة أخرى"),
+    "workLocation": MessageLookupByLibrary.simpleMessage("العمل"),
   };
 }

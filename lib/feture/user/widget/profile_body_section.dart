@@ -16,7 +16,9 @@ class ProfileBodySection extends StatelessWidget {
           _buildSectionContainer([
             ProfileItem(title: context.l10n.personalData, iconPath: 'assets/icons/user.svg', onTap: () {}),
             ProfileItem(title: context.l10n.wallet, iconPath: 'assets/icons/wallet.svg', onTap: () {}),
-            ProfileItem(title: context.l10n.addresses, iconPath: 'assets/icons/location.svg', onTap: () {}),
+            ProfileItem(title: context.l10n.addresses, iconPath: 'assets/icons/location.svg', onTap: () {
+              Navigator.of(context, rootNavigator: true).pushNamed(Routes.addressesView);
+            }),
             ProfileItem(title: context.l10n.payment, iconPath: 'assets/icons/payment.svg', onTap: () {}),
           ]),
 

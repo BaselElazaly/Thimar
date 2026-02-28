@@ -43,6 +43,10 @@ dependencies:
   carousel_slider: ^5.1.2
   smooth_page_indicator: ^2.0.1
   flutter_localization: ^0.3.3
+  dotted_border: ^2.1.0
+  google_maps_flutter: ^2.14.2
+  location: ^8.0.1
+  geocoding: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +63,7 @@ flutter_icons:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/icons/

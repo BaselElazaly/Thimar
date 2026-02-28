@@ -183,6 +183,11 @@ class S {
     return Intl.message('Add to Cart', name: 'addToCart', desc: '', args: []);
   }
 
+  /// `Price`
+  String get price {
+    return Intl.message('Price', name: 'price', desc: '', args: []);
+  }
+
   // skipped getter for the '// Categories Types Section' key
 
   /// `Vegetables`
@@ -323,6 +328,63 @@ class S {
   /// `Logout`
   String get logout {
     return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  // skipped getter for the '// Adressess Screen' key
+
+  /// `Add Address`
+  String get addAddress {
+    return Intl.message('Add Address', name: 'addAddress', desc: '', args: []);
+  }
+
+  /// `Work`
+  String get workLocation {
+    return Intl.message('Work', name: 'workLocation', desc: '', args: []);
+  }
+
+  /// `Home`
+  String get homeLocation {
+    return Intl.message('Home', name: 'homeLocation', desc: '', args: []);
+  }
+
+  /// `Location`
+  String get location {
+    return Intl.message('Location', name: 'location', desc: '', args: []);
+  }
+
+  /// `description`
+  String get description {
+    return Intl.message('description', name: 'description', desc: '', args: []);
+  }
+
+  /// `There are no addresses`
+  String get noAddresses {
+    return Intl.message(
+      'There are no addresses',
+      name: 'noAddresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address Type`
+  String get addressType {
+    return Intl.message(
+      'Address Type',
+      name: 'addressType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `add phoneNumber`
+  String get addPhoneNumber {
+    return Intl.message(
+      'add phoneNumber',
+      name: 'addPhoneNumber',
+      desc: '',
+      args: [],
+    );
   }
 }
 

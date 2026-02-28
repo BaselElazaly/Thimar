@@ -87,7 +87,7 @@ class ProductItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                'السعر/$unit',
+                '${context.l10n.price}/$unit',
                 style: const TextStyle(
                   color: Color(0xFF808080),
                   fontSize: 12,

@@ -22,7 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "addAddress": MessageLookupByLibrary.simpleMessage("Add Address"),
+    "addPhoneNumber": MessageLookupByLibrary.simpleMessage("add phoneNumber"),
     "addToCart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
+    "addressType": MessageLookupByLibrary.simpleMessage("Address Type"),
     "addresses": MessageLookupByLibrary.simpleMessage("Addresses"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "complaints": MessageLookupByLibrary.simpleMessage(
@@ -31,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
     "dates": MessageLookupByLibrary.simpleMessage("Dates"),
     "deliveryTo": MessageLookupByLibrary.simpleMessage("Delivery to"),
+    "description": MessageLookupByLibrary.simpleMessage("description"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account?",
     ),
@@ -42,13 +46,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "fruits": MessageLookupByLibrary.simpleMessage("Fruits"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "homeLocation": MessageLookupByLibrary.simpleMessage("Home"),
     "items": MessageLookupByLibrary.simpleMessage("Items"),
+    "location": MessageLookupByLibrary.simpleMessage("Location"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "loginNow": MessageLookupByLibrary.simpleMessage("You can login now"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "meat": MessageLookupByLibrary.simpleMessage("Meat"),
     "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
     "myOrders": MessageLookupByLibrary.simpleMessage("My Orders"),
+    "noAddresses": MessageLookupByLibrary.simpleMessage(
+      "There are no addresses",
+    ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
     "nuts": MessageLookupByLibrary.simpleMessage("Nuts"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -56,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "permanentOffers": MessageLookupByLibrary.simpleMessage("Permanent Offers"),
     "personalData": MessageLookupByLibrary.simpleMessage("Personal Data"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+    "price": MessageLookupByLibrary.simpleMessage("Price"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
     "profileTitle": MessageLookupByLibrary.simpleMessage("My Account"),
     "registerNow": MessageLookupByLibrary.simpleMessage("Register Now"),
@@ -68,5 +78,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
     "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
+    "workLocation": MessageLookupByLibrary.simpleMessage("Work"),
   };
 }

@@ -54,13 +54,53 @@ class ServerGate {
       return CustomResponse(
         isSuccess: true,
         data: response.data,
-        message: response.data['message'] ?? "تمت العملية بنجاح",
+        message: response.data['message'] ?? "The operation was successful",
       );
     } on DioException catch (e) {
       return CustomResponse(
         isSuccess: false,
         data: e.response?.data,
-        message: e.response?.data?['message'] ?? "حدث خطأ غير متوقع",
+        message: e.response?.data?['message'] ?? "Something went wrong",
+      );
+    }
+  }
+
+  Future<CustomResponse> delete({
+    required String path,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? params,
+  }) async {
+    try {
+      final response = await dio.delete(
+        path,
+        data: data,
+        queryParameters: params,
+        options: Options(headers: _getHeaders()),
+      );
+
+      String msg = "تم الحذف بنجاح";
+      if (response.data is Map) {
+        msg = response.data['message'] ?? msg;
+      }
+
+      return CustomResponse(
+        isSuccess: true,
+        data: response.data,
+        message: msg,
+      );
+    } on DioException catch (e) {
+      String errMsg = "حدث خطأ غير متوقع";
+      
+      if (e.response?.data is Map) {
+        errMsg = e.response?.data['message'] ?? errMsg;
+      } else {
+        errMsg = "خطأ في السيرفر (Server Error)";
+      }
+
+      return CustomResponse(
+        isSuccess: false,
+        message: errMsg,
+        data: e.response?.data,
       );
     }
   }
