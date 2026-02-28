@@ -12,6 +12,7 @@ class AddressCubit extends Cubit<AddressStates> {
   Future<void> getAddresses({bool isRefresh = false}) async {
     if (!isRefresh) emit(GetAddressesLoadingState());
     final response = await _serverGate.get(path: "client/addresses");
+    if (isClosed) return;
     if (response.isSuccess) {
       try {
         addresses = AddressData.fromJson(response.data).list;
