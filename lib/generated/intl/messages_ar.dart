@@ -69,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchHint": MessageLookupByLibrary.simpleMessage("ابحث عن ماتريد؟"),
     "shareApp": MessageLookupByLibrary.simpleMessage("مشاركة التطبيق"),
     "spices": MessageLookupByLibrary.simpleMessage("البهارات"),
+    "updateAddress": MessageLookupByLibrary.simpleMessage("تعديل العنوان"),
+    "updatingProgress": MessageLookupByLibrary.simpleMessage("جاري التعديل..."),
     "vegetables": MessageLookupByLibrary.simpleMessage("الخضار"),
     "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "wallet": MessageLookupByLibrary.simpleMessage("المحفظة"),

@@ -396,6 +396,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Update Address`
+  String get updateAddress {
+    return Intl.message(
+      'Update Address',
+      name: 'updateAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Updating in progress...`
+  String get updatingProgress {
+    return Intl.message(
+      'Updating in progress...',
+      name: 'updatingProgress',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

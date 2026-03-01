@@ -1,8 +1,11 @@
+// ignore_for_file: unused_field
+
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:thimar/core/services/local_cubit.dart';
 import 'package:thimar/core/services/location_service.dart';
 import 'package:thimar/core/services/service_locator.dart';
@@ -13,44 +16,36 @@ import 'package:thimar/feture/address/cubit/address_states.dart';
 import 'package:thimar/feture/address/widget/address_type_item.dart';
 import 'package:thimar/feture/address/widget/custom_address_textfield.dart';
 import 'package:thimar/feture/auth/widgets/default_button_widget.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class AddAddressView extends StatefulWidget {
-  const AddAddressView({super.key});
+class UpdateAddressView extends StatefulWidget {
+  final dynamic addressModel;
+  const UpdateAddressView({super.key, required this.addressModel});
 
   @override
-  State<AddAddressView> createState() => _AddAddressViewState();
+  State<UpdateAddressView> createState() => _UpdateAddressViewState();
 }
 
-class _AddAddressViewState extends State<AddAddressView> {
-  int selectedType = 0;
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+class _UpdateAddressViewState extends State<UpdateAddressView> {
+  late int selectedType;
+  late TextEditingController phoneNumberController;
+  late TextEditingController descriptionController;
 
-  GoogleMapController? _mapController;
   double? currentLat, currentLng;
-  bool isLoadingLocation = true;
-  String currentAddressText = "جاري جلب العنوان...";
+  String? currentAddressText;
+  bool isLoadingLocation = false;
+  GoogleMapController? _mapController;
 
   @override
   void initState() {
     super.initState();
-    _getUserLocation();
-  }
-
-  Future<void> _getUserLocation() async {
-    try {
-      final locationData = await getIt<LocationService>().getCurrentLocation();
-      if (!mounted) return;
-      setState(() {
-        currentLat = locationData.latitude;
-        currentLng = locationData.longitude;
-        isLoadingLocation = false;
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() => isLoadingLocation = false);
-    }
+    phoneNumberController =
+        TextEditingController(text: widget.addressModel.phone);
+    descriptionController =
+        TextEditingController(text: widget.addressModel.description);
+    currentLat = double.parse(widget.addressModel.lat.toString());
+    currentLng = double.parse(widget.addressModel.lng.toString());
+    currentAddressText = widget.addressModel.location;
+    selectedType = widget.addressModel.type == "home" ? 0 : 1;
   }
 
   @override
@@ -79,7 +74,7 @@ class _AddAddressViewState extends State<AddAddressView> {
             elevation: 0,
             centerTitle: true,
             title: Text(
-              context.l10n.addAddress,
+              context.l10n.updateAddress,
               style: const TextStyle(
                   color: AppColors.primary,
                   fontWeight: FontWeight.bold,
@@ -216,15 +211,16 @@ class _AddAddressViewState extends State<AddAddressView> {
                       builder: (context, state) {
                         return DefaultButton(
                           text: state is AddAddressLoadingState
-                              ? context.l10n.addingProgress
-                              : context.l10n.addAddress,
+                              ? context.l10n.updatingProgress
+                              : context.l10n.updateAddress,
                           onPress: state is AddAddressLoadingState
                               ? null
                               : () {
-                                  context.read<AddAddressCubit>().addAddress(
+                                  context.read<AddAddressCubit>().updateAddress(
+                                        id: widget.addressModel.id,
                                         lat: currentLat!,
                                         lng: currentLng!,
-                                        location: currentAddressText,
+                                        location: currentAddressText!,
                                         description: descriptionController.text,
                                         phone: phoneNumberController.text,
                                         type:

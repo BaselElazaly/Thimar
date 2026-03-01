@@ -56,5 +56,7 @@
     "noAddresses": "لا يوجد عناوين حالياً",
     "addressType": "نوع العنوان",
     "addPhoneNumber": "أدخل رقم الجوال",
-    "addingProgress":"جاري الإضافة..."
+    "addingProgress":"جاري الإضافة...",
+    "updateAddress": "تعديل العنوان",
+    "updatingProgress": "جاري التعديل..."
 }

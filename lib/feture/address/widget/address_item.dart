@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/core/utils/language.dart';
+import 'package:thimar/feture/address/cubit/add_address_cubit.dart';
 import 'package:thimar/feture/address/cubit/address_cubit.dart';
+import 'package:thimar/feture/address/view/update_address_view.dart';
 import 'package:thimar/model/adderss_model.dart';
 
 class AddressItem extends StatelessWidget {
@@ -63,6 +65,9 @@ class AddressItem extends StatelessWidget {
               ),
             ]),
           ),
+          SizedBox(
+            width: 4,
+          ),
           InkWell(
             onTap: () {
               context.read<AddressCubit>().deleteAddress(model.id);
@@ -74,10 +79,24 @@ class AddressItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          SvgPicture.asset(
-            'assets/icons/edit.svg',
-            width: 24,
-            height: 24,
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UpdateAddressView(addressModel: model),
+                ),
+              ).then((value) {
+                if (context.mounted) {
+                  context.read<AddressCubit>().getAddresses(isRefresh: true);
+                }
+              });
+            },
+            child: SvgPicture.asset(
+              'assets/icons/edit.svg',
+              width: 24,
+              height: 24,
+            ),
           ),
         ],
       ),

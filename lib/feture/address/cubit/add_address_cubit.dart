@@ -24,7 +24,7 @@ class AddAddressCubit extends Cubit<AddressStates> {
         data: {
           "lat": lat.toString(),
           "lng": lng.toString(),
-          "location": location, 
+          "location": location,
           "description": description,
           "phone": phone,
           "type": type.toLowerCase(),
@@ -40,10 +40,43 @@ class AddAddressCubit extends Cubit<AddressStates> {
       }
     } catch (e) {
       if (e is DioException) {
-        print(
-            "Server Message: ${e.response?.data}"); 
+        print("Server Message: ${e.response?.data}");
       }
       emit(AddAddressErrorState("حدث خطأ في البيانات المرسلة"));
+    }
+  }
+
+  Future<void> updateAddress({
+    required int id,
+    required double lat,
+    required double lng,
+    required String location,
+    required String description,
+    required String phone,
+    required String type,
+  }) async {
+    emit(AddAddressLoadingState());
+    try {
+      final response = await _serverGate.put(
+        path: "client/addresses/$id",
+        data: {
+          "lat": lat.toString(),
+          "lng": lng.toString(),
+          "location": location,
+          "description": description,
+          "phone": phone,
+          "type": type.toLowerCase(),
+        },
+      );
+
+      if (response.data['status'] == 'success') {
+        emit(AddAddressSuccessState(
+            response.data['message'] ?? "تم التعديل بنجاح"));
+      } else {
+        emit(AddAddressErrorState(response.data['message'] ?? "فشلت العملية"));
+      }
+    } catch (e) {
+      emit(AddAddressErrorState("حدث خطأ في الاتصال بالسيرفر"));
     }
   }
 }

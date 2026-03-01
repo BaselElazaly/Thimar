@@ -77,6 +77,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "shareApp": MessageLookupByLibrary.simpleMessage("Share App"),
     "spices": MessageLookupByLibrary.simpleMessage("Spices"),
+    "updateAddress": MessageLookupByLibrary.simpleMessage("Update Address"),
+    "updatingProgress": MessageLookupByLibrary.simpleMessage(
+      "Updating in progress...",
+    ),
     "vegetables": MessageLookupByLibrary.simpleMessage("Vegetables"),
     "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
     "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),

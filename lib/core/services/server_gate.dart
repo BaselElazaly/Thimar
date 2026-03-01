@@ -90,7 +90,7 @@ class ServerGate {
       );
     } on DioException catch (e) {
       String errMsg = "حدث خطأ غير متوقع";
-      
+
       if (e.response?.data is Map) {
         errMsg = e.response?.data['message'] ?? errMsg;
       } else {
@@ -101,6 +101,31 @@ class ServerGate {
         isSuccess: false,
         message: errMsg,
         data: e.response?.data,
+      );
+    }
+  }
+
+  Future<CustomResponse> put({
+    required String path,
+    Map<String, dynamic>? data,
+  }) async {
+    try {
+      final response = await dio.put(
+        path,
+        data: data,
+        options: Options(headers: _getHeaders()),
+      );
+
+      return CustomResponse(
+        isSuccess: true,
+        data: response.data,
+        message: response.data['message'] ?? "تم التعديل بنجاح",
+      );
+    } on DioException catch (e) {
+      return CustomResponse(
+        isSuccess: false,
+        data: e.response?.data,
+        message: e.response?.data?['message'] ?? "فشلت عملية التعديل",
       );
     }
   }
