@@ -1,9 +1,10 @@
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thimar/core/route/routes.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/core/utils/language.dart';
+import 'package:thimar/feture/address/cubit/address_cubit.dart';
 
 class AddAddressButton extends StatelessWidget {
   const AddAddressButton({super.key});
@@ -13,8 +14,10 @@ class AddAddressButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, Routes.addAddressesView);
+        onTap: () async {
+          await Navigator.pushNamed(context, Routes.addAddressesView);
+          if (!context.mounted) return;
+          context.read<AddressCubit>().getAddresses(isRefresh: true);
         },
         child: DottedBorder(
           color: AppColors.primary,

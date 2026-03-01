@@ -39,6 +39,8 @@ class AddressItem extends StatelessWidget {
                     color: AppColors.primary,
                     fontSize: 14,
                     fontWeight: FontWeight.w400),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
               Text(
                 "${context.l10n.description} : ${model.description}",
@@ -61,13 +63,12 @@ class AddressItem extends StatelessWidget {
               ),
             ]),
           ),
-          // جوه الـ InkWell بتاع أيقونة المسح
           InkWell(
             onTap: () {
               context.read<AddressCubit>().deleteAddress(model.id);
             },
             child: SvgPicture.asset(
-              'assets/icons/delete.svg', 
+              'assets/icons/delete.svg',
               width: 24,
               height: 24,
             ),

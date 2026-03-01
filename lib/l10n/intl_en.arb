@@ -55,5 +55,6 @@
     "description": "description",
     "noAddresses": "There are no addresses",
     "addressType": "address type",
-    "addPhoneNumber": "add phoneNumber"
+    "addPhoneNumber": "add phoneNumber",
+    "addingProgress": "Adding in progress..."
 }

@@ -386,6 +386,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Adding in progress...`
+  String get addingProgress {
+    return Intl.message(
+      'Adding in progress...',
+      name: 'addingProgress',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

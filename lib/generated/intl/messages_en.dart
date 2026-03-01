@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "addAddress": MessageLookupByLibrary.simpleMessage("Add Address"),
     "addPhoneNumber": MessageLookupByLibrary.simpleMessage("add phoneNumber"),
     "addToCart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
+    "addingProgress": MessageLookupByLibrary.simpleMessage(
+      "Adding in progress...",
+    ),
     "addressType": MessageLookupByLibrary.simpleMessage("address type"),
     "addresses": MessageLookupByLibrary.simpleMessage("Addresses"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
