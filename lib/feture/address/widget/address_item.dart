@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/core/utils/language.dart';
-import 'package:thimar/feture/address/cubit/add_address_cubit.dart';
 import 'package:thimar/feture/address/cubit/address_cubit.dart';
 import 'package:thimar/feture/address/view/update_address_view.dart';
 import 'package:thimar/model/adderss_model.dart';
@@ -22,6 +21,7 @@ class AddressItem extends StatelessWidget {
         border: Border.all(color: AppColors.primary),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child:

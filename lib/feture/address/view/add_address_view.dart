@@ -1,3 +1,6 @@
+// ignore_for_file: unused_field
+
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -28,6 +31,7 @@ class _AddAddressViewState extends State<AddAddressView> {
   TextEditingController descriptionController = TextEditingController();
 
   GoogleMapController? _mapController;
+  final Completer<GoogleMapController> _controllerCompleter = Completer();
   double? currentLat, currentLng;
   bool isLoadingLocation = true;
   String currentAddressText = "جاري جلب العنوان...";
@@ -42,11 +46,18 @@ class _AddAddressViewState extends State<AddAddressView> {
     try {
       final locationData = await getIt<LocationService>().getCurrentLocation();
       if (!mounted) return;
+
       setState(() {
         currentLat = locationData.latitude;
         currentLng = locationData.longitude;
         isLoadingLocation = false;
       });
+
+      if (_mapController != null && currentLat != null) {
+        _mapController!.animateCamera(
+          CameraUpdate.newLatLngZoom(LatLng(currentLat!, currentLng!), 15),
+        );
+      }
     } catch (e) {
       if (!mounted) return;
       setState(() => isLoadingLocation = false);
@@ -114,16 +125,24 @@ class _AddAddressViewState extends State<AddAddressView> {
               Expanded(
                 child: Stack(
                   children: [
-                    if (!isLoadingLocation)
+                    if (!isLoadingLocation && currentLat != null)
                       GoogleMap(
                         initialCameraPosition: CameraPosition(
-                          target: LatLng(currentLat!, currentLng!),
+                          target: LatLng(
+                              currentLat ?? 30.0444, currentLng ?? 31.2357),
                           zoom: 15,
                         ),
-                        onMapCreated: (controller) =>
-                            _mapController = controller,
+                        onMapCreated: (controller) {
+                          _mapController = controller;
+                          if (currentLat != null) {
+                            _mapController!.animateCamera(
+                              CameraUpdate.newLatLngZoom(
+                                  LatLng(currentLat!, currentLng!), 15),
+                            );
+                          }
+                        },
                         myLocationEnabled: true,
-                        myLocationButtonEnabled: false,
+                        myLocationButtonEnabled: true,
                         onCameraMove: (position) {
                           currentLat = position.target.latitude;
                           currentLng = position.target.longitude;

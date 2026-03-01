@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thimar/feture/address/view/add_address_view.dart';
 import 'package:thimar/feture/address/view/addresses_view.dart';
-import 'package:thimar/feture/address/view/update_address_view.dart';
 import 'package:thimar/feture/auth/login/view/login_view.dart';
 import 'package:thimar/feture/favorite/view/favorite_view.dart';
 import 'package:thimar/feture/home/view/home_view.dart';
