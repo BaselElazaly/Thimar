@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:thimar/core/services/location_service.dart';
 import 'package:thimar/feture/address/cubit/add_address_cubit.dart';
 import 'package:thimar/feture/address/cubit/address_cubit.dart';
+import 'package:thimar/feture/auth/login/cubit/login_cubit.dart';
 import 'package:thimar/feture/home/cubit/home_cubit.dart';
 import 'package:thimar/feture/user/cubit/user_cubit.dart';
 import 'server_gate.dart';
@@ -17,10 +18,12 @@ void setupLocator() {
     ..getCategories());
 
   getIt.registerFactory(() => ProfileCubit(getIt<ServerGate>()));
+  getIt.registerFactory(() => LoginCubit());
 
   getIt.registerLazySingleton(() => AddressCubit(getIt<ServerGate>()));
 
   getIt.registerLazySingleton<LocationService>(() => LocationService());
 
-  getIt.registerFactory<AddAddressCubit>(() => AddAddressCubit(getIt<ServerGate>()));
+  getIt.registerFactory<AddAddressCubit>(
+      () => AddAddressCubit(getIt<ServerGate>()));
 }

@@ -25,191 +25,196 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    final cubit = getIt<LoginCubit>();
-    return BlocConsumer<LoginCubit, LoginStates>(
-      bloc: cubit,
-      listener: (context, state) {
-        if (state is LoginSuccess) {
-          Navigator.pushReplacementNamed(context, '/layout');
-        } else if (state is LoginFailed) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                content: Text(state.message), backgroundColor: Colors.red),
-          );
-        }
-      },
-      builder: (context, state) {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          body: Stack(
-            children: [
-              Positioned.fill(
-                child: Image.asset(
-                  Assets.images.splashBg.path,
-                  fit: BoxFit.cover,
-                  color: Colors.white.withAlpha(100),
-                  colorBlendMode: BlendMode.lighten,
+    return BlocProvider(
+      create: (context) => LoginCubit(),
+      child: BlocConsumer<LoginCubit, LoginStates>(
+        listener: (context, state) {
+          if (state is LoginSuccess) {
+            Navigator.pushReplacementNamed(context, '/layout');
+          } else if (state is LoginFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  content: Text(state.message), backgroundColor: Colors.red),
+            );
+          }
+        },
+        builder: (context, state) {
+          final cubit = context.read<LoginCubit>();
+
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: Stack(
+              children: [
+                Positioned.fill(
+                  child: Image.asset(
+                    Assets.images.splashBg.path,
+                    fit: BoxFit.cover,
+                    color: Colors.white.withAlpha(100),
+                    colorBlendMode: BlendMode.lighten,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        SvgPicture.asset(
-                          Assets.icons.logo,
-                          width: screenWidth * 0.33,
-                        ),
-                        const SizedBox(
-                          height: 21,
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(start: 9),
-                          child: Text(
-                            "welcomeBack".tr(),
-                            style: const TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const SizedBox(
+                            height: 40,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsetsDirectional.only(start: 14),
-                          child: Text(
-                            "loginNow".tr(),
-                            style: const TextStyle(
-                              color: Color(0xFF707070),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w300,
-                            ),
+                          SvgPicture.asset(
+                            Assets.icons.logo,
+                            width: screenWidth * 0.33,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 28,
-                        ),
-                        IntrinsicHeight(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              const CountryCodeWidget(),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: CustomTextField(
-                                  controller: phoneController,
-                                  hintText: "phoneNumber".tr(),
-                                  iconPath: Assets.icons.phone,
-                                  textInputType: TextInputType.phone,
-                                ),
-                              ),
-                            ],
+                          const SizedBox(
+                            height: 21,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        CustomTextField(
-                          controller: passwordController,
-                          hintText: "password".tr(),
-                          iconPath: Assets.icons.unlock,
-                          textInputType: TextInputType.visiblePassword,
-                          isPassword: true,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            const Spacer(),
-                            InkWell(
-                              onTap: () {},
-                              child: Text(
-                                "forgetPassword".tr(),
-                                style: const TextStyle(
-                                  color: Color(0xFF707070),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 22,
-                        ),
-                        state is LoginLoading
-                            ? const Center(
-                                child: CircularProgressIndicator(
-                                color: AppColors.primary,
-                              ))
-                            : DefaultButton(
-                                text: "login".tr(),
-                                btnColor: AppColors.primary,
-                                btnShadowColor: const Color(0xFF61B80C),
-                                onPress: () {
-                                  if (phoneController.text.isNotEmpty &&
-                                      passwordController.text.isNotEmpty) {
-                                    cubit.loginUser(
-                                      phone: phoneController.text,
-                                      password: passwordController.text,
-                                    );
-                                  } else {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(
-                                      SnackBar(content: Text("enterFullData".tr())),
-                                    );
-                                  }
-                                },
-                              ),
-                        const SizedBox(
-                          height: 45,
-                        ),
-                        Center(
-                          child: RichText(
-                            text: TextSpan(
+                          Padding(
+                            padding: const EdgeInsetsDirectional.only(start: 9),
+                            child: Text(
+                              "welcomeBack".tr(),
                               style: const TextStyle(
-                                fontFamily: 'Tajawal',
                                 color: AppColors.primary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsetsDirectional.only(start: 14),
+                            child: Text(
+                              "loginNow".tr(),
+                              style: const TextStyle(
+                                color: Color(0xFF707070),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 28,
+                          ),
+                          IntrinsicHeight(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                TextSpan(
-                                  text: "dontHaveAccount".tr(),
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: "registerNow".tr(),
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                const CountryCodeWidget(),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: CustomTextField(
+                                    controller: phoneController,
+                                    hintText: "phoneNumber".tr(),
+                                    iconPath: Assets.icons.phone,
+                                    textInputType: TextInputType.phone,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          CustomTextField(
+                            controller: passwordController,
+                            hintText: "password".tr(),
+                            iconPath: Assets.icons.unlock,
+                            textInputType: TextInputType.visiblePassword,
+                            isPassword: true,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: [
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {},
+                                child: Text(
+                                  "forgetPassword".tr(),
+                                  style: const TextStyle(
+                                    color: Color(0xFF707070),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 22,
+                          ),
+                          state is LoginLoading
+                              ? const Center(
+                                  child: CircularProgressIndicator(
+                                  color: AppColors.primary,
+                                ))
+                              : DefaultButton(
+                                  text: "login".tr(),
+                                  btnColor: AppColors.primary,
+                                  btnShadowColor: const Color(0xFF61B80C),
+                                  onPress: () {
+                                    if (phoneController.text.isNotEmpty &&
+                                        passwordController.text.isNotEmpty) {
+                                      cubit.loginUser(
+                                        phone: phoneController.text,
+                                        password: passwordController.text,
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content:
+                                                Text("enterFullData".tr())),
+                                      );
+                                    }
+                                  },
+                                ),
+                          const SizedBox(
+                            height: 45,
+                          ),
+                          Center(
+                            child: RichText(
+                              text: TextSpan(
+                                style: const TextStyle(
+                                  fontFamily: 'Tajawal',
+                                  color: AppColors.primary,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: "dontHaveAccount".tr(),
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "registerNow".tr(),
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -23,7 +23,7 @@ class _HomeViewState extends State<HomeView> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         // statusBarColor: Colors.white,
-        // statusBarIconBrightness: Brightness.dark,
+       statusBarIconBrightness: Brightness.dark,
       ),
       child: SafeArea(
         child: Scaffold(
