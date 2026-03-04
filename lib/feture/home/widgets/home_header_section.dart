@@ -1,9 +1,10 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:thimar/core/gen/assets.gen.dart';
 import 'package:thimar/core/utils/app_colors.dart';
-import 'package:thimar/core/utils/language.dart';
 import 'package:thimar/feture/auth/widgets/custom_text_field_widget.dart';
 
 class HomeHeaderSection extends StatelessWidget {
@@ -25,13 +26,12 @@ class HomeHeaderSection extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              // 1. الجزء بتاع اللوجو (أديناه عرض ثابت أو خليناه Expanded عشان التوازن)
               Expanded(
                 flex: 2,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SvgPicture.asset('assets/icons/logo.svg', width: 20),
+                    SvgPicture.asset(Assets.icons.logo, width: 20),
                     const SizedBox(width: 4),
                     Text(
                       'سلة ثمار',
@@ -45,14 +45,13 @@ class HomeHeaderSection extends StatelessWidget {
                 ),
               ),
 
-              // 2. الجزء بتاع العنوان (دلوقتي هو في نص الشاشة بالضبط)
               Expanded(
                 flex: 3,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      context.l10n.deliveryTo,
+                      "deliveryTo".tr(),
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w900,
@@ -61,7 +60,7 @@ class HomeHeaderSection extends StatelessWidget {
                     ),
                     const Text(
                       'شارع الملك فهد - جدة',
-                      textAlign: TextAlign.center, // عشان النص يتركز
+                      textAlign: TextAlign.center, 
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -74,7 +73,6 @@ class HomeHeaderSection extends StatelessWidget {
                 ),
               ),
 
-              // 3. الجزء بتاع السلة
               Expanded(
                 flex: 2,
                 child: Align(
@@ -91,7 +89,7 @@ class HomeHeaderSection extends StatelessWidget {
                           color: AppColors.primary.withOpacity(0.13),
                         ),
                         child: SvgPicture.asset(
-                          'assets/icons/cart.svg',
+                          Assets.icons.cart,
                           width: 20,
                         ),
                       ),
@@ -123,8 +121,8 @@ class HomeHeaderSection extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           CustomTextField(
-            hintText: context.l10n.searchHint,
-            iconPath: 'assets/icons/search.svg',
+            hintText: "searchHint".tr(),
+            iconPath: Assets.icons.search,
             textInputType: TextInputType.text,
             controller: searchController,
             fillColor: AppColors.primary.withOpacity(0.03),

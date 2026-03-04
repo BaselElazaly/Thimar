@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thimar/core/services/server_gate.dart';
 import 'package:thimar/feture/address/cubit/address_states.dart';
@@ -6,7 +7,6 @@ import 'package:thimar/model/adderss_model.dart';
 class AddressCubit extends Cubit<AddressStates> {
   final ServerGate _serverGate;
   AddressCubit(this._serverGate) : super(AddressInitialState());
-
 
   List<AddressModel> addresses = [];
 
@@ -20,10 +20,10 @@ class AddressCubit extends Cubit<AddressStates> {
     if (response.isSuccess) {
       try {
         addresses = AddressData.fromJson(response.data).list;
-
         emit(GetAddressesSuccessState(response));
       } catch (e) {
-        emit(GetAddressesErrorState("حدث خطأ أثناء معالجة البيانات"));
+        print("Error is: $e");
+        emit(GetAddressesErrorState("default_erro".tr()));
       }
     } else {
       emit(GetAddressesErrorState(response.message));
@@ -31,11 +31,12 @@ class AddressCubit extends Cubit<AddressStates> {
   }
 
   Future<void> deleteAddress(int id) async {
-    emit(DeleteAddressLoadingState());
     final response = await _serverGate.delete(path: "client/addresses/$id");
 
     if (response.isSuccess) {
       addresses.removeWhere((element) => element.id == id);
+
+      emit(GetAddressesSuccessState(response));
       emit(DeleteAddressSuccessState(response.message));
     } else {
       emit(DeleteAddressErrorState(response.message));

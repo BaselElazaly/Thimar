@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thimar/core/utils/app_colors.dart';
-import 'package:thimar/core/utils/language.dart';
 import 'package:thimar/feture/home/cubit/home_cubit.dart';
 import 'package:thimar/feture/home/cubit/home_state.dart';
 import 'product_item.dart';
@@ -16,7 +16,7 @@ class HomeProductsSection extends StatelessWidget {
         Row(
           children: [
             Text(
-              context.l10n.items,
+              "items".tr(),
               style: const TextStyle(
                 fontWeight: FontWeight.w800,
                 color: Colors.black,

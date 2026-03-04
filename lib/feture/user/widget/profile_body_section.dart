@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:thimar/core/cache/cache_helper.dart';
+import 'package:thimar/core/gen/assets.gen.dart';
 import 'package:thimar/core/route/routes.dart';
-import 'package:thimar/core/utils/language.dart';
 import 'package:thimar/feture/user/widget/profile_item_widget.dart';
 
 class ProfileBodySection extends StatelessWidget {
@@ -14,30 +15,55 @@ class ProfileBodySection extends StatelessWidget {
       child: Column(
         children: [
           _buildSectionContainer([
-            ProfileItem(title: context.l10n.personalData, iconPath: 'assets/icons/user.svg', onTap: () {}),
-            ProfileItem(title: context.l10n.wallet, iconPath: 'assets/icons/wallet.svg', onTap: () {}),
-            ProfileItem(title: context.l10n.addresses, iconPath: 'assets/icons/location.svg', onTap: () {
-              Navigator.of(context, rootNavigator: true).pushNamed(Routes.addressesView);
-            }),
-            ProfileItem(title: context.l10n.payment, iconPath: 'assets/icons/payment.svg', onTap: () {}),
+            ProfileItem(
+                title: "personalData".tr(),
+                iconPath: Assets.icons.user,
+                onTap: () {}),
+            ProfileItem(
+                title: "wallet".tr(),
+                iconPath: Assets.icons.wallet,
+                onTap: () {}),
+            ProfileItem(
+                title: "addresses".tr(),
+                iconPath: Assets.icons.location,
+                onTap: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pushNamed(Routes.addressesView);
+                }),
+            ProfileItem(
+                title: "payment".tr(),
+                iconPath: Assets.icons.payment,
+                onTap: () {}),
           ]),
-
           const SizedBox(height: 16),
-
-          _buildSectionContainer([
-            ProfileItem(title: context.l10n.faq, iconPath: 'assets/icons/faq.svg', onTap: () {}),
-            ProfileItem(title: context.l10n.privacyPolicy, iconPath: 'assets/icons/privacy.svg', onTap: () {}),
-            ProfileItem(title: context.l10n.contactUs, iconPath: 'assets/icons/contact.svg', onTap: () {}),
-            ProfileItem(title: context.l10n.complaints, iconPath: 'assets/icons/complaint.svg', onTap: () {}),
-            ProfileItem(title: context.l10n.shareApp, iconPath: 'assets/icons/share.svg', onTap: () {}),
-          ]),
-
-          const SizedBox(height: 16),
-
           _buildSectionContainer([
             ProfileItem(
-              title: context.l10n.logout,
-              iconPath: '', 
+              title: "faq".tr(),
+              iconPath: Assets.icons.faq,
+              onTap: () {},
+            ),
+            ProfileItem(
+                title: "privacyPolicy".tr(),
+                iconPath: Assets.icons.privacy,
+                onTap: () {}),
+            ProfileItem(
+                title: "contactUs".tr(),
+                iconPath: Assets.icons.contact,
+                onTap: () {}),
+            ProfileItem(
+                title: "complaints".tr(),
+                iconPath: Assets.icons.complaint,
+                onTap: () {}),
+            ProfileItem(
+                title: "shareApp".tr(),
+                iconPath: Assets.icons.share,
+                onTap: () {}),
+          ]),
+          const SizedBox(height: 16),
+          _buildSectionContainer([
+            ProfileItem(
+              title: "logout".tr(),
+              iconPath: '',
               isLogout: true,
               onTap: () {
                 CacheHelper.clearToken();

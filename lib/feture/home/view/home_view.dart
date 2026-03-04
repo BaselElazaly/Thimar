@@ -21,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<HomeCubit>()..getSliders()..getProducts(),
+      create: (context) => getIt<HomeCubit>()..getSliders()..getProducts()..getCategories(),
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(
           statusBarColor: Colors.white,

@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:thimar/core/utils/language.dart';
+import 'package:thimar/core/gen/assets.gen.dart';
 import 'package:thimar/feture/favorite/view/favorite_view.dart';
 import 'package:thimar/feture/home/view/home_view.dart';
 import 'package:thimar/feture/layout/cubit/layout_state.dart';
@@ -15,8 +16,7 @@ class LayoutCubit extends Cubit<LayoutState> {
   static LayoutCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
-  
-  // شيلنا الـ labels من هنا لأن الـ context مش مكانه الـ Cubit
+
 
   final List<Widget> screens = [
     const HomeView(),
@@ -26,20 +26,20 @@ class LayoutCubit extends Cubit<LayoutState> {
     const UserView(),
   ];
 
-  final List<String> unselectedIcons = [
-    'assets/icons/home_navbar.svg',
-    'assets/icons/orders_navbar.svg',
-    'assets/icons/notfication_navbar.svg',
-    'assets/icons/favorite_navbar.svg',
-    'assets/icons/user_navbar.svg',
+  final List<String> selectedIcons = [
+    Assets.icons.activeHomeNavbar,
+    Assets.icons.activeOrdersNavbar,
+    Assets.icons.activeNotficationNavbar,
+    Assets.icons.activeFavoriteNavbar,
+    Assets.icons.activeUserNavbar,
   ];
 
-  final List<String> selectedIcons = [
-    'assets/icons/active_home_navbar.svg',
-    'assets/icons/active_orders_navbar.svg',
-    'assets/icons/active_notfication_navbar.svg',
-    'assets/icons/active_favorite_navbar.svg',
-    'assets/icons/active_user_navbar.svg',
+  final List<String> unselectedIcons = [
+    Assets.icons.homeNavbar,
+    Assets.icons.ordersNavbar,
+    Assets.icons.notficationNavbar,
+    Assets.icons.favoriteNavbar,
+    Assets.icons.userNavbar,
   ];
 
   void changeNavBarIndex(int index) {
@@ -49,11 +49,11 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   List<BottomNavigationBarItem> getBottomItems(BuildContext context) {
     final List<String> labels = [
-      context.l10n.home,
-      context.l10n.myOrders,
-      context.l10n.notifications,
-      context.l10n.favorites,
-      context.l10n.myAccount,
+      "home".tr(),
+      "myOrders".tr(),
+      "notifications".tr(),
+      "favorites".tr(),
+      "myAccount".tr(),
     ];
 
     return List.generate(selectedIcons.length, (index) {
@@ -68,7 +68,7 @@ class LayoutCubit extends Cubit<LayoutState> {
             height: 24,
           ),
         ),
-        label: labels[index], 
+        label: labels[index],
       );
     });
   }

@@ -1,19 +1,23 @@
 // ignore_for_file: empty_catches
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:thimar/core/services/local_cubit.dart';
+import 'package:thimar/core/route/routes.dart';
+import 'package:thimar/core/services/service_locator.dart';
 import 'package:thimar/core/utils/app_colors.dart';
-import 'package:thimar/core/utils/language.dart';
 import 'package:thimar/feture/home/cubit/home_cubit.dart';
 import 'package:thimar/feture/user/cubit/user_cubit.dart';
 import 'package:thimar/feture/user/cubit/user_state.dart';
+import 'package:thimar/feture/user/view/user_view.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = getIt<ProfileCubit>()..getProfileData();
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
@@ -64,42 +68,44 @@ class ProfileHeader extends StatelessWidget {
           PositionedDirectional(
             top: 45,
             start: 20,
-            child: BlocBuilder<LocaleCubit, Locale>(
-              builder: (context, locale) {
-                return InkWell(
-                  onTap: () {
-                    context.read<LocaleCubit>().toggleLanguage();
-                    try {
-                      context.read<HomeCubit>().getSliders();
-                      context.read<HomeCubit>().getProducts();
-                    } catch (e) {}
-                    context.read<ProfileCubit>().getProfileData();
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.white.withOpacity(0.5)),
-                    ),
-                    child: Text(
-                      locale.languageCode == 'ar' ? 'English' : 'عربي',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+            child: InkWell(
+              onTap: () async {
+                await context.setLocale(
+                  context.locale.languageCode == 'ar'
+                      ? const Locale('en')
+                      : const Locale('ar'),
                 );
+                if (!context.mounted) return;
+                try {
+                  getIt<HomeCubit>().getSliders();
+                  getIt<HomeCubit>().getProducts();
+                  getIt<ProfileCubit>().getProfileData();
+                } catch (e) {}
+                Navigator.pushReplacementNamed(context, Routes.layoutView, );
               },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.white.withOpacity(0.5)),
+                ),
+                child: Text(
+                  context.locale.languageCode == 'ar' ? 'English' : 'عربي',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
           ),
           BlocBuilder<ProfileCubit, ProfileStates>(
+            bloc: cubit,
             builder: (context, state) {
-              final user = context.read<ProfileCubit>().userModel;
-
+              final user = cubit.userModel;
               if (state is GetProfileLoadingState) {
                 return const Center(
                   child: CircularProgressIndicator(color: Colors.white),
@@ -112,7 +118,7 @@ class ProfileHeader extends StatelessWidget {
                     children: [
                       const SizedBox(height: 40),
                       Text(
-                        context.l10n.profileTitle,
+                        "profileTitle".tr(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -142,7 +148,7 @@ class ProfileHeader extends StatelessWidget {
                         ),
                       ),
                       Directionality(
-                        textDirection: TextDirection.ltr,
+                        textDirection: ui.TextDirection.ltr,
                         child: Text(
                           '+${user.phone}',
                           style: const TextStyle(

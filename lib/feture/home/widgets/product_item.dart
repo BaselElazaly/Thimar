@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:thimar/core/utils/app_colors.dart';
-import 'package:thimar/core/utils/language.dart';
 
 class ProductItem extends StatelessWidget {
   final String imagePath;
@@ -59,7 +59,8 @@ class ProductItem extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   child: Text(
                     '$discount%- ',
                     style: const TextStyle(
@@ -87,7 +88,7 @@ class ProductItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                '${context.l10n.price}/$unit',
+                '${"price".tr()}/$unit',
                 style: const TextStyle(
                   color: Color(0xFF808080),
                   fontSize: 12,
@@ -105,7 +106,7 @@ class ProductItem extends StatelessWidget {
                   child: Text(
                     '$priceAfterDiscount ر.س',
                     style: const TextStyle(
-                      fontSize: 16, 
+                      fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
                     ),
@@ -150,11 +151,11 @@ class ProductItem extends StatelessWidget {
                 color: AppColors.secondry,
                 borderRadius: BorderRadius.circular(9),
               ),
-              child:  Padding(
+              child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: Text(
-                    context.l10n.addToCart,
+                    "addToCart".tr(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,

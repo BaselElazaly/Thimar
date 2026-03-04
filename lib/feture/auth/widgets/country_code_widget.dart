@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thimar/core/gen/assets.gen.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 
 class CountryCodeWidget extends StatefulWidget {
@@ -29,7 +30,7 @@ class _CountryCodeWidgetState extends State<CountryCodeWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/saudi_flag.png', width: 32), 
+            Image.asset(Assets.icons.saudiFlag, width: 32), 
             const SizedBox(height: 4),
             const Text(
               "+966",

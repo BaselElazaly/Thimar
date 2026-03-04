@@ -1,5 +1,6 @@
 
 
+import 'package:thimar/model/category_model.dart';
 import 'package:thimar/model/product_model.dart';
 import 'package:thimar/model/slider_model.dart';
 
@@ -17,6 +18,18 @@ class HomeSliderSuccess extends HomeState {
 class HomeSliderError extends HomeState {
   final String message;
   HomeSliderError(this.message);
+}
+
+class GetCategoriesLoading extends HomeState {}
+
+class GetCategoriesSuccess extends HomeState {
+  final List<CategoryModel> categories;
+  GetCategoriesSuccess(this.categories); 
+}
+
+class GetCategoriesError extends HomeState {
+  final String message;
+  GetCategoriesError(this.message);
 }
 
 class GetProductsLoading extends HomeState {}

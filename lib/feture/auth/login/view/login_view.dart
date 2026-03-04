@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:thimar/core/gen/assets.gen.dart';
 import 'package:thimar/core/utils/app_colors.dart';
-import 'package:thimar/core/utils/language.dart';
 import 'package:thimar/feture/auth/login/cubit/login_cubit.dart';
 import 'package:thimar/feture/auth/login/cubit/login_state.dart';
 import 'package:thimar/feture/auth/widgets/country_code_widget.dart';
@@ -31,7 +32,8 @@ class _LoginViewState extends State<LoginView> {
             Navigator.pushReplacementNamed(context, '/layout');
           } else if (state is LoginFailed) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message), backgroundColor: Colors.red),
+              SnackBar(
+                  content: Text(state.message), backgroundColor: Colors.red),
             );
           }
         },
@@ -62,7 +64,7 @@ class _LoginViewState extends State<LoginView> {
                             height: 40,
                           ),
                           SvgPicture.asset(
-                            'assets/icons/logo.svg',
+                            Assets.icons.logo,
                             width: screenWidth * 0.33,
                           ),
                           const SizedBox(
@@ -71,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
                           Padding(
                             padding: const EdgeInsetsDirectional.only(start: 9),
                             child: Text(
-                              context.l10n.welcomeBack,
+                              "welcomeBack".tr(),
                               style: const TextStyle(
                                 color: AppColors.primary,
                                 fontSize: 16,
@@ -83,9 +85,10 @@ class _LoginViewState extends State<LoginView> {
                             height: 10,
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.only(start: 14),
+                            padding:
+                                const EdgeInsetsDirectional.only(start: 14),
                             child: Text(
-                              context.l10n.loginNow,
+                              "loginNow".tr(),
                               style: const TextStyle(
                                 color: Color(0xFF707070),
                                 fontSize: 16,
@@ -105,8 +108,8 @@ class _LoginViewState extends State<LoginView> {
                                 Expanded(
                                   child: CustomTextField(
                                     controller: phoneController,
-                                    hintText: context.l10n.phoneNumber,
-                                    iconPath: "assets/icons/phone.svg",
+                                    hintText: "phoneNumber".tr(),
+                                    iconPath: Assets.icons.phone,
                                     textInputType: TextInputType.phone,
                                   ),
                                 ),
@@ -118,8 +121,8 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           CustomTextField(
                             controller: passwordController,
-                            hintText: context.l10n.password,
-                            iconPath: 'assets/icons/unlock.svg',
+                            hintText: "password".tr(),
+                            iconPath: Assets.icons.unlock,
                             textInputType: TextInputType.visiblePassword,
                             isPassword: true,
                           ),
@@ -132,7 +135,7 @@ class _LoginViewState extends State<LoginView> {
                               InkWell(
                                 onTap: () {},
                                 child: Text(
-                                  context.l10n.forgetPassword,
+                                  "forgetPassword".tr(),
                                   style: const TextStyle(
                                     color: Color(0xFF707070),
                                     fontSize: 16,
@@ -145,27 +148,30 @@ class _LoginViewState extends State<LoginView> {
                           const SizedBox(
                             height: 22,
                           ),
-                          state is LoginLoading 
-                          ? const Center(child: CircularProgressIndicator(
-                              color: AppColors.primary,
-                            )) 
-                          : DefaultButton(
-                                text: context.l10n.login,
-                                btnColor: AppColors.primary,
-                                btnShadowColor: const Color(0xFF61B80C),
-                                onPress: () {
-                                  if (phoneController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-                                    cubit.loginUser(
-                                      phone: phoneController.text,
-                                      password: passwordController.text,
-                                    );
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(content: Text(context.l10n.enterFullData)),
-                                    );
-                                  }
-                                },
-                              ),
+                          state is LoginLoading
+                              ? const Center(
+                                  child: CircularProgressIndicator(
+                                  color: AppColors.primary,
+                                ))
+                              : DefaultButton(
+                                  text: "login".tr(),
+                                  btnColor: AppColors.primary,
+                                  btnShadowColor: const Color(0xFF61B80C),
+                                  onPress: () {
+                                    if (phoneController.text.isNotEmpty &&
+                                        passwordController.text.isNotEmpty) {
+                                      cubit.loginUser(
+                                        phone: phoneController.text,
+                                        password: passwordController.text,
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(content: Text("enterFullData".tr())),
+                                      );
+                                    }
+                                  },
+                                ),
                           const SizedBox(
                             height: 45,
                           ),
@@ -177,15 +183,15 @@ class _LoginViewState extends State<LoginView> {
                                   color: AppColors.primary,
                                 ),
                                 children: [
-                                   TextSpan(
-                                    text: context.l10n.dontHaveAccount,
+                                  TextSpan(
+                                    text: "dontHaveAccount".tr(),
                                     style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   TextSpan(
-                                    text: context.l10n.registerNow,
+                                    text: "registerNow".tr(),
                                     style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,

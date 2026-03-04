@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:thimar/core/utils/app_colors.dart';
-import 'package:thimar/core/utils/language.dart';
 import 'package:thimar/feture/home/cubit/home_cubit.dart';
 import 'package:thimar/feture/home/cubit/home_state.dart';
 
@@ -51,7 +51,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                     ),
                     child: Center(
                       child: Text(
-                        context.l10n.permanentOffers,
+                        "permanentOffers".tr(),
                         style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w700,

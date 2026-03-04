@@ -13,13 +13,15 @@ void setupLocator() {
 
   getIt.registerFactory(() => HomeCubit(getIt<ServerGate>())
     ..getSliders()
-    ..getProducts());
+    ..getProducts()
+    ..getCategories());
 
   getIt.registerFactory(() => ProfileCubit(getIt<ServerGate>()));
 
-  getIt.registerFactory(() => AddressCubit(getIt<ServerGate>()));
+  getIt.registerLazySingleton(() => AddressCubit(getIt<ServerGate>()));
 
   getIt.registerLazySingleton<LocationService>(() => LocationService());
 
-  getIt.registerFactory<AddAddressCubit>(() => AddAddressCubit(getIt<ServerGate>()));
+  getIt.registerFactory<AddAddressCubit>(
+      () => AddAddressCubit(getIt<ServerGate>()));
 }

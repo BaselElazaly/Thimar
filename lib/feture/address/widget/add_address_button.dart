@@ -1,9 +1,9 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thimar/core/route/routes.dart';
 import 'package:thimar/core/utils/app_colors.dart';
-import 'package:thimar/core/utils/language.dart';
 import 'package:thimar/feture/address/cubit/address_cubit.dart';
 
 class AddAddressButton extends StatelessWidget {
@@ -34,7 +34,7 @@ class AddAddressButton extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                context.l10n.addAddress,
+                "addAddress".tr(),
                 style: const TextStyle(
                   color: AppColors.primary,
                   fontWeight: FontWeight.bold,

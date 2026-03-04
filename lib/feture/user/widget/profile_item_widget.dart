@@ -1,6 +1,7 @@
 import 'dart:math' as math; // محتاجين دي عشان نلف السهم
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:thimar/core/gen/assets.gen.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 
 class ProfileItem extends StatelessWidget {
@@ -51,13 +52,13 @@ class ProfileItem extends StatelessWidget {
               Transform.rotate(
                 angle: isArabic ? 0 : math.pi,
                 child: SvgPicture.asset(
-                  'assets/icons/profile_arrow.svg',
+                  Assets.icons.profileArrow,
                   width: 20,
                 ),
               )
             else
               SvgPicture.asset(
-                'assets/icons/logout.svg',
+                Assets.icons.logout,
                 width: 24,
               ),
           ],

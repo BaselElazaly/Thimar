@@ -31,3 +31,12 @@ class AddAddressErrorState extends AddressStates {
   final String error;
   AddAddressErrorState(this.error);
 }
+
+class GetLocationLoadingState extends AddressStates {}
+class GetLocationSuccessState extends AddressStates {
+  
+}
+class GetLocationErrorState extends AddressStates {
+  final String error;
+  GetLocationErrorState(this.error);
+}
