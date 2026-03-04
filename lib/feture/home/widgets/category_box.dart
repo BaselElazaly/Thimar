@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thimar/model/category_model.dart';
 
 class CategoryBox extends StatelessWidget {
-  final CategoryModel model; 
+  final CategoryModel model;
   const CategoryBox({super.key, required this.model});
 
   @override
@@ -13,17 +13,20 @@ class CategoryBox extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.network(
-            model.media, 
+            model.media,
             width: screenHeight * 0.1,
             height: screenHeight * 0.1,
             fit: BoxFit.fill,
-            errorBuilder: (context, error, stackTrace) => 
-                const Icon(Icons.broken_image, size: 50, color: Colors.grey),
+            errorBuilder: (context, error, stackTrace) => SizedBox(
+                width: screenHeight * 0.1,
+                height: screenHeight * 0.1,
+                child: const Icon(Icons.broken_image,
+                    size: 50, color: Colors.grey)),
           ),
         ),
         const SizedBox(height: 4),
         Text(
-          model.name, 
+          model.name,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
       ],

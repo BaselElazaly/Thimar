@@ -2,7 +2,9 @@
 
 import 'dart:async';
 import 'dart:math' as math;
-import 'package:easy_localization/easy_localization.dart'; 
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -94,20 +96,28 @@ class _AddAddressViewState extends State<AddAddressView> {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height*0.4,
+                height: MediaQuery.of(context).size.height * 0.4,
                 child: BlocBuilder<AddAddressCubit, AddressStates>(
                   bloc: cubit,
                   builder: (context, state) {
                     if (cubit.isLoadingLocation || cubit.currentLat == null) {
                       return const Center(
-                        child: CircularProgressIndicator(color: AppColors.primary),
+                        child:
+                            CircularProgressIndicator(color: AppColors.primary),
                       );
                     }
                     return Stack(
                       children: [
                         GoogleMap(
+                          gestureRecognizers: <Factory<
+                              OneSequenceGestureRecognizer>>{
+                            Factory<OneSequenceGestureRecognizer>(
+                              () => EagerGestureRecognizer(),
+                            ),
+                          },
                           initialCameraPosition: CameraPosition(
-                            target: LatLng(cubit.currentLat!, cubit.currentLng!),
+                            target:
+                                LatLng(cubit.currentLat!, cubit.currentLng!),
                             zoom: 15,
                           ),
                           onMapCreated: (controller) {
@@ -217,11 +227,14 @@ class _AddAddressViewState extends State<AddAddressView> {
                                     location: cubit.currentAddressText,
                                     description: descriptionController.text,
                                     phone: phoneNumberController.text,
-                                    type: cubit.selectedType == 0 ? "Home" : "Work",
+                                    type: cubit.selectedType == 0
+                                        ? "Home"
+                                        : "Work",
                                   );
                                 },
                           btnColor: AppColors.primary,
-                          btnShadowColor: const Color(0xFF61B80C).withOpacity(0.19),
+                          btnShadowColor:
+                              const Color(0xFF61B80C).withOpacity(0.19),
                         );
                       },
                     ),

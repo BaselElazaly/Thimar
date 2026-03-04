@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:thimar/core/services/service_locator.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/feture/home/cubit/home_cubit.dart';
 import 'package:thimar/feture/home/cubit/home_state.dart';
@@ -16,12 +17,20 @@ class HomeSliderSection extends StatefulWidget {
 
 class _HomeSliderSectionState extends State<HomeSliderSection> {
   int activeIndex = 0;
+  late final HomeCubit cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    cubit = getIt<HomeCubit>()..getSliders();
+  }
 
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-
+    
     return BlocBuilder<HomeCubit, HomeState>(
+      bloc: cubit,
       buildWhen: (previous, current) =>
           current is HomeSliderLoading ||
           current is HomeSliderSuccess ||

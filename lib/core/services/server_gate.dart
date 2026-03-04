@@ -15,7 +15,9 @@ class ServerGate {
   Map<String, dynamic> _getHeaders() => {
         'Authorization': 'Bearer ${CacheHelper.getToken()}',
         'Accept': 'application/json',
-        'Accept-Language': CacheHelper.getData(key: 'lang').isEmpty ? 'ar' : CacheHelper.getData(key: 'lang'),
+        'Accept-Language': CacheHelper.getData(key: 'lang').isEmpty
+            ? 'ar'
+            : CacheHelper.getData(key: 'lang'),
       };
 
   Failure _handleError(DioException error) {
@@ -26,10 +28,11 @@ class ServerGate {
         return DataSource.sendTimeout.getFailure();
       case DioExceptionType.receiveTimeout:
         return DataSource.receiveTimeout.getFailure();
-      case DioExceptionType.badResponse:
-        return _handleBadResponse(error);
       case DioExceptionType.connectionError:
         return DataSource.noInternetConnection.getFailure();
+      case DioExceptionType.badResponse:
+        return _handleBadResponse(error);
+
       case DioExceptionType.cancel:
         return DataSource.cancel.getFailure();
       default:
@@ -51,43 +54,70 @@ class ServerGate {
     return Failure(code, message);
   }
 
-  Future<CustomResponse> sendRequest({required String path, Map<String, dynamic>? data}) async {
+  Future<CustomResponse> sendRequest(
+      {required String path, Map<String, dynamic>? data}) async {
     try {
-      final response = await dio.post(path, data: data, options: Options(headers: _getHeaders()));
-      return CustomResponse(isSuccess: true, data: response.data, message: response.data['message'] ?? "");
+      final response = await dio.post(path,
+          data: data, options: Options(headers: _getHeaders()));
+      return CustomResponse(
+          isSuccess: true,
+          data: response.data,
+          message: response.data['message'] ?? "");
     } on DioException catch (e) {
       Failure failure = _handleError(e);
       return CustomResponse(isSuccess: false, message: failure.message);
     }
   }
 
-  Future<CustomResponse> get({required String path, Map<String, dynamic>? params}) async {
+  Future<CustomResponse> get(
+      {required String path, Map<String, dynamic>? params}) async {
     try {
-      final response = await dio.get(path, queryParameters: params, options: Options(headers: _getHeaders()));
-      return CustomResponse(isSuccess: true, data: response.data, message: response.data['message'] ?? "");
+      final response = await dio.get(path,
+          queryParameters: params, options: Options(headers: _getHeaders()));
+      return CustomResponse(
+          isSuccess: true,
+          data: response.data,
+          message: response.data['message'] ?? "");
     } on DioException catch (e) {
       Failure failure = _handleError(e);
       return CustomResponse(isSuccess: false, message: failure.message);
     }
   }
 
-  Future<CustomResponse> put({required String path, Map<String, dynamic>? data}) async {
+  Future<CustomResponse> put(
+      {required String path, Map<String, dynamic>? data}) async {
     try {
-      final response = await dio.put(path, data: data, options: Options(headers: _getHeaders()));
-      return CustomResponse(isSuccess: true, data: response.data, message: response.data['message'] ?? "");
+      final response = await dio.put(path,
+          data: data, options: Options(headers: _getHeaders()));
+      return CustomResponse(
+          isSuccess: true,
+          data: response.data,
+          message: response.data['message'] ?? "");
     } on DioException catch (e) {
       Failure failure = _handleError(e);
       return CustomResponse(isSuccess: false, message: failure.message);
     }
   }
 
-  Future<CustomResponse> delete({required String path, Map<String, dynamic>? data, Map<String, dynamic>? params}) async {
+  Future<CustomResponse> delete(
+      {required String path,
+      Map<String, dynamic>? data,
+      Map<String, dynamic>? params}) async {
     try {
-      final response = await dio.delete(path, data: data, queryParameters: params, options: Options(headers: _getHeaders()));
-      return CustomResponse(isSuccess: true, data: response.data, message: response.data['message'] ?? "تم الحذف بنجاح");
+      final response = await dio.delete(path,
+          data: data,
+          queryParameters: params,
+          options: Options(headers: _getHeaders()));
+      return CustomResponse(
+          isSuccess: true,
+          data: response.data,
+          message: response.data['message'] ?? "تم الحذف بنجاح");
     } on DioException catch (e) {
       Failure failure = _handleError(e);
       return CustomResponse(isSuccess: false, message: failure.message);
+    } catch (e) {
+      print('$e');
+      return CustomResponse(isSuccess: false, message: 'unknow err');
     }
   }
 }

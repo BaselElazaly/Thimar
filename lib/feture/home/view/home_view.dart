@@ -20,42 +20,39 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<HomeCubit>()..getSliders()..getProducts()..getCategories(),
-      child: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: const SystemUiOverlayStyle(
-          statusBarColor: Colors.white,
-          statusBarIconBrightness: Brightness.dark,
-        ),
-        child: SafeArea(
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: Column(
-              children: [
-                HomeHeaderSection(searchController: searchController),
-                Expanded(
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        const HomeSliderSection(),
-                        const SizedBox(height: 30),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Column(
-                            children: const [
-                              HomeCategoriesSection(),
-                              SizedBox(height: 28),
-                              HomeProductsSection(),
-                            ],
-                          ),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        // statusBarColor: Colors.white,
+        // statusBarIconBrightness: Brightness.dark,
+      ),
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Column(
+            children: [
+              HomeHeaderSection(searchController: searchController),
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      const HomeSliderSection(),
+                      const SizedBox(height: 30),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Column(
+                          children: const [
+                            HomeCategoriesSection(),
+                            SizedBox(height: 28),
+                            HomeProductsSection(),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),

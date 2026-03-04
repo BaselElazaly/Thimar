@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:thimar/core/gen/assets.gen.dart';
 import 'package:thimar/core/services/service_locator.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/feture/address/cubit/address_cubit.dart';
@@ -73,7 +74,7 @@ class AddressItem extends StatelessWidget {
               getIt<AddressCubit>().deleteAddress(model.id);
             },
             child: SvgPicture.asset(
-              'assets/icons/delete.svg',
+              Assets.icons.delete,
               width: 24,
               height: 24,
             ),
@@ -93,7 +94,7 @@ class AddressItem extends StatelessWidget {
               });
             },
             child: SvgPicture.asset(
-              'assets/icons/edit.svg',
+              Assets.icons.edit,
               width: 24,
               height: 24,
             ),

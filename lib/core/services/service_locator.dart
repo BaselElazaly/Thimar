@@ -22,6 +22,5 @@ void setupLocator() {
 
   getIt.registerLazySingleton<LocationService>(() => LocationService());
 
-  getIt.registerFactory<AddAddressCubit>(
-      () => AddAddressCubit(getIt<ServerGate>()));
+  getIt.registerFactory<AddAddressCubit>(() => AddAddressCubit(getIt<ServerGate>()));
 }

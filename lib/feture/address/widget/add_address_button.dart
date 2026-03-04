@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thimar/core/route/routes.dart';
+import 'package:thimar/core/services/service_locator.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/feture/address/cubit/address_cubit.dart';
 
@@ -17,7 +18,7 @@ class AddAddressButton extends StatelessWidget {
         onTap: () async {
           await Navigator.pushNamed(context, Routes.addAddressesView);
           if (!context.mounted) return;
-          context.read<AddressCubit>().getAddresses(isRefresh: true);
+          getIt<AddressCubit>().getAddresses(isRefresh: true);
         },
         child: DottedBorder(
           color: AppColors.primary,

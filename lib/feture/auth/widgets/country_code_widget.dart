@@ -30,7 +30,7 @@ class _CountryCodeWidgetState extends State<CountryCodeWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(Assets.icons.saudiFlag, width: 32), 
+            Image.asset(Assets.images.saudiFlag.path, width: 32), 
             const SizedBox(height: 4),
             const Text(
               "+966",

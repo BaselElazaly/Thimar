@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:thimar/core/cache/cache_helper.dart';
+import 'package:thimar/core/gen/assets.gen.dart';
 import 'package:thimar/core/route/routes.dart';
 
 class SplashView extends StatefulWidget {
@@ -41,14 +42,14 @@ class _SplashViewState extends State<SplashView> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/splash_bg.png',
+              Assets.images.splashBg.path,
               fit: BoxFit.cover,
               color: Colors.black.withOpacity(0.04),
               colorBlendMode: BlendMode.darken, 
             ),
           ),
           Center(
-            child: SvgPicture.asset('assets/icons/logo.svg',
+            child: SvgPicture.asset(Assets.icons.logo,
                 width: (screenWidth * 0.5).clamp(180.0, 280.0)),
           ),
           Positioned(
@@ -57,7 +58,7 @@ class _SplashViewState extends State<SplashView> {
               child: Transform.translate(
                 offset: Offset(screenWidth * 0.3, screenHeight * 0.07),
                 child: Image.asset(
-                  'assets/images/bottom_fruits.png',
+                  Assets.images.bottomFruits.path,
                   width: (screenWidth * 1.1).clamp(300.0, 500.0),
                   fit: BoxFit.contain,
                 ),

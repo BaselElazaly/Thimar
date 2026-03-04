@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:thimar/core/services/service_locator.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/feture/home/cubit/home_cubit.dart';
 import 'package:thimar/feture/home/cubit/home_state.dart';
@@ -11,6 +12,7 @@ class HomeProductsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = getIt<HomeCubit>()..getProducts();
     return Column(
       children: [
         Row(
@@ -27,6 +29,7 @@ class HomeProductsSection extends StatelessWidget {
         ),
         const SizedBox(height: 18),
         BlocBuilder<HomeCubit, HomeState>(
+          bloc: cubit,
           buildWhen: (previous, current) =>
               current is GetProductsLoading ||
               current is GetProductsSuccess ||

@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:thimar/bloc_observer.dart';
 import 'package:thimar/core/cache/cache_helper.dart';
 import 'package:thimar/core/route/app_router.dart';
 import 'package:thimar/core/route/routes.dart';
@@ -27,7 +28,7 @@ void main() async {
   await CacheHelper.init();
   setupLocator();
   await EasyLocalization.ensureInitialized();
-
+  Bloc.observer = AppBlocObserver();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('ar'), Locale('en')],
