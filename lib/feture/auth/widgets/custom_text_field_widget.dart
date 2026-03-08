@@ -9,14 +9,17 @@ class CustomTextField extends StatefulWidget {
   final Color fillColor;
   final TextInputType textInputType;
   final TextEditingController controller;
+  final ValueChanged<String>? onChanged;
 
-   const CustomTextField({
+  const CustomTextField({
     super.key,
     required this.hintText,
     required this.iconPath,
     required this.textInputType,
     required this.controller,
-    this.isPassword = false, this.fillColor = Colors.white, 
+    this.isPassword = false,
+    this.fillColor = Colors.white,
+    this.onChanged,
   });
 
   @override
@@ -44,8 +47,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
       controller: widget.controller,
       onChanged: (value) {
         setState(() {
-          hasText = value.isNotEmpty; 
+          hasText = value.isNotEmpty;
         });
+        if (widget.onChanged != null) {
+          widget.onChanged!(value);
+        }
       },
       obscureText: widget.isPassword,
       style: const TextStyle(
@@ -74,11 +80,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
             const EdgeInsetsDirectional.symmetric(vertical: 18, horizontal: 12),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: hasText ? AppColors.primary : const Color(0xFFF3F3F3),),
+          borderSide: BorderSide(
+            color: hasText ? AppColors.primary : const Color(0xFFF3F3F3),
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide:  BorderSide(color: hasText ? AppColors.primary : const Color(0xFFF3F3F3),),
+          borderSide: BorderSide(
+            color: hasText ? AppColors.primary : const Color(0xFFF3F3F3),
+          ),
         ),
       ),
     );

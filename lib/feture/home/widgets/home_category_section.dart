@@ -12,7 +12,7 @@ class HomeCategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = getIt<HomeCubit>()..getCategories();
+    final cubit = getIt<HomeCubit>();
     return BlocBuilder<HomeCubit, HomeState>(
       bloc: cubit,
       buildWhen: (previous, current) =>

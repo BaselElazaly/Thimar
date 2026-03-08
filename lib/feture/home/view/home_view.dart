@@ -19,11 +19,18 @@ class _HomeViewState extends State<HomeView> {
   final searchController = TextEditingController();
 
   @override
+void dispose() {
+  getIt<HomeCubit>().searchProducts = [];
+  searchController.clear(); 
+  super.dispose();
+}
+
+  @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         // statusBarColor: Colors.white,
-       statusBarIconBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
       ),
       child: SafeArea(
         child: Scaffold(
@@ -35,13 +42,13 @@ class _HomeViewState extends State<HomeView> {
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
-                    children: [
-                      const HomeSliderSection(),
-                      const SizedBox(height: 30),
+                    children: const [
+                      HomeSliderSection(),
+                      SizedBox(height: 30),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.symmetric(horizontal: 16),
                         child: Column(
-                          children: const [
+                          children: [
                             HomeCategoriesSection(),
                             SizedBox(height: 28),
                             HomeProductsSection(),

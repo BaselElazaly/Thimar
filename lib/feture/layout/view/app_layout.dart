@@ -10,8 +10,15 @@ class AppLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int? startIndex = ModalRoute.of(context)?.settings.arguments as int?;
     return BlocProvider(
-      create: (context) => LayoutCubit(),
+      create: (context) {
+        final cubit = LayoutCubit();
+        if (startIndex != null) {
+          LayoutCubit.currentIndex = startIndex;
+        }
+        return cubit;
+      },
       child: BlocConsumer<LayoutCubit, LayoutState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -19,14 +26,14 @@ class AppLayout extends StatelessWidget {
           return PopScope(
             canPop: false,
             onPopInvokedWithResult: (didPop, result) {
-              if (cubit.currentIndex != 0) {
-                cubit.changeNavBarIndex(0); 
+              if (LayoutCubit.currentIndex != 0) {
+                cubit.changeNavBarIndex(0);
               } else {
-                SystemNavigator.pop(); 
+                SystemNavigator.pop();
               }
             },
             child: Scaffold(
-              body: cubit.screens[cubit.currentIndex],
+              body: cubit.screens[LayoutCubit.currentIndex],
               bottomNavigationBar: Container(
                 height: 80,
                 decoration: const BoxDecoration(
@@ -34,7 +41,7 @@ class AppLayout extends StatelessWidget {
                 ),
                 child: BottomNavigationBar(
                   items: cubit.getBottomItems(context),
-                  currentIndex: cubit.currentIndex,
+                  currentIndex: LayoutCubit.currentIndex,
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   selectedItemColor: const Color(0xFFFFFFFF),

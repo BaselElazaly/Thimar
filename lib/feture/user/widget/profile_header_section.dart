@@ -8,6 +8,7 @@ import 'package:thimar/core/route/routes.dart';
 import 'package:thimar/core/services/service_locator.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/feture/home/cubit/home_cubit.dart';
+import 'package:thimar/feture/layout/cubit/layout_cubit.dart';
 import 'package:thimar/feture/user/cubit/user_cubit.dart';
 import 'package:thimar/feture/user/cubit/user_state.dart';
 import 'package:thimar/feture/user/view/user_view.dart';
@@ -76,12 +77,13 @@ class ProfileHeader extends StatelessWidget {
                       : const Locale('ar'),
                 );
                 if (!context.mounted) return;
-                try {
-                  getIt<HomeCubit>().getSliders();
-                  getIt<HomeCubit>().getProducts();
-                  getIt<ProfileCubit>().getProfileData();
-                } catch (e) {}
-                Navigator.pushReplacementNamed(context, Routes.layoutView, );
+                final homeCubit = getIt<HomeCubit>();
+                homeCubit.searchProducts = [];
+                homeCubit.getProducts();
+
+                getIt<ProfileCubit>().getProfileData();
+                LayoutCubit.currentIndex = 4;
+                Navigator.pushReplacementNamed(context, Routes.layoutView);
               },
               child: Container(
                 padding:

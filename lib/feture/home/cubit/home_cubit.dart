@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:thimar/core/services/server_gate.dart';
@@ -36,7 +38,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<CategoryModel> categories = [];
 
   Future<void> getCategories() async {
-    emit(GetCategoriesLoading()); 
+    emit(GetCategoriesLoading());
 
     final response = await serverGate.get(path: 'categories');
 
@@ -74,6 +76,41 @@ class HomeCubit extends Cubit<HomeState> {
       }
     } else {
       emit(GetProductsError(response.message));
+    }
+  }
+
+  List<ProductModel> searchProducts = [];
+
+  Future<void> search(String keyword) async {
+    if (keyword.isEmpty) {
+      searchProducts = [];
+      emit(GetProductsSuccess(products));
+      return;
+    }
+
+    emit(SearchLoadingState());
+
+    final response = await serverGate.get(
+      path: "search",
+      params: {"keyword": keyword},
+    );
+
+    if (isClosed) return;
+
+    if (response.isSuccess) {
+      try {
+        final List dataList = response.data['data']['search_result'];
+
+        searchProducts = List<ProductModel>.from(
+            dataList.map((x) => ProductModel.fromJson(x)));
+
+        emit(SearchSuccessState(searchProducts));
+      } catch (e) {
+        print("Error is: $e");
+        emit(SearchErrorState("default_error".tr()));
+      }
+    } else {
+      emit(SearchErrorState(response.message));
     }
   }
 }

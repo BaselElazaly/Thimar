@@ -117,7 +117,7 @@ class ServerGate {
       return CustomResponse(isSuccess: false, message: failure.message);
     } catch (e) {
       print('$e');
-      return CustomResponse(isSuccess: false, message: 'unknow err');
+      return CustomResponse(isSuccess: false, message: 'unknown err');
     }
   }
 }

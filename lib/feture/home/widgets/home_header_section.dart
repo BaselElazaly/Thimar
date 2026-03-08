@@ -4,8 +4,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:thimar/core/gen/assets.gen.dart';
+import 'package:thimar/core/services/service_locator.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/feture/auth/widgets/custom_text_field_widget.dart';
+import 'package:thimar/feture/home/cubit/home_cubit.dart';
 
 class HomeHeaderSection extends StatelessWidget {
   final TextEditingController searchController;
@@ -44,7 +46,6 @@ class HomeHeaderSection extends StatelessWidget {
                   ],
                 ),
               ),
-
               Expanded(
                 flex: 3,
                 child: Column(
@@ -60,7 +61,7 @@ class HomeHeaderSection extends StatelessWidget {
                     ),
                     const Text(
                       'شارع الملك فهد - جدة',
-                      textAlign: TextAlign.center, 
+                      textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -72,7 +73,6 @@ class HomeHeaderSection extends StatelessWidget {
                   ],
                 ),
               ),
-
               Expanded(
                 flex: 2,
                 child: Align(
@@ -126,6 +126,9 @@ class HomeHeaderSection extends StatelessWidget {
             textInputType: TextInputType.text,
             controller: searchController,
             fillColor: AppColors.primary.withOpacity(0.03),
+            onChanged: (value) {
+              getIt<HomeCubit>().search(value);
+            },
           ),
           const SizedBox(height: 24),
         ],

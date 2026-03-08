@@ -43,3 +43,15 @@ class GetProductsError extends HomeState {
   final String message;
   GetProductsError(this.message);
 }
+
+class SearchLoadingState extends HomeState {}
+
+class SearchSuccessState extends HomeState {
+  final List<ProductModel> products;
+  SearchSuccessState(this.products);
+}
+
+class SearchErrorState extends HomeState {
+  final String message;
+  SearchErrorState(this.message);
+}

@@ -15,7 +15,7 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   static LayoutCubit get(context) => BlocProvider.of(context);
 
-  int currentIndex = 0;
+  static int currentIndex = 0;
 
 
   final List<Widget> screens = [
