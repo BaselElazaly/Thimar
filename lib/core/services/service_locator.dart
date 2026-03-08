@@ -12,10 +12,10 @@ final getIt = GetIt.instance;
 void setupLocator() {
   getIt.registerLazySingleton(() => ServerGate());
 
-getIt.registerLazySingleton(() => HomeCubit(getIt<ServerGate>())
-  ..getSliders()
-  ..getProducts()
-  ..getCategories());
+  getIt.registerLazySingleton(() => HomeCubit(getIt<ServerGate>())
+    ..getSliders()
+    ..getProducts()
+    ..getCategories());
 
   getIt.registerFactory(() => ProfileCubit(getIt<ServerGate>()));
   getIt.registerFactory(() => LoginCubit());

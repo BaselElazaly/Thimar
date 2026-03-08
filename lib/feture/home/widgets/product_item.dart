@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 
 class ProductItem extends StatelessWidget {
@@ -38,12 +39,21 @@ class ProductItem extends StatelessWidget {
                   height: screenHeight * 0.14,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(11),
-                    image: DecorationImage(
-                      image: NetworkImage(imagePath),
-                      fit: BoxFit.cover,
-                    ),
+                  ),
+                  child: Image.network(
+                    imagePath,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          color: Colors.grey.withOpacity(0.4),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 Positioned(
@@ -58,19 +68,18 @@ class ProductItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                 Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                    child: Text(
-                      ' $discount%- ',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  child: Text(
+                    ' $discount%- ',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
                     ),
                   ),
-                
+                ),
               ],
             ),
           ),

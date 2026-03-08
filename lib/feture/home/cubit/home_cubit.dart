@@ -82,12 +82,6 @@ class HomeCubit extends Cubit<HomeState> {
   List<ProductModel> searchProducts = [];
 
   Future<void> search(String keyword) async {
-    if (keyword.isEmpty) {
-      searchProducts = [];
-      emit(GetProductsSuccess(products));
-      return;
-    }
-
     emit(SearchLoadingState());
 
     final response = await serverGate.get(
@@ -106,7 +100,6 @@ class HomeCubit extends Cubit<HomeState> {
 
         emit(SearchSuccessState(searchProducts));
       } catch (e) {
-        print("Error is: $e");
         emit(SearchErrorState("default_error".tr()));
       }
     } else {

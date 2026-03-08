@@ -6,6 +6,7 @@ import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/feture/home/cubit/home_cubit.dart';
 import 'package:thimar/feture/home/cubit/home_state.dart';
 import 'package:thimar/feture/home/widgets/category_box.dart';
+import 'package:thimar/feture/home/widgets/category_shimmer.dart';
 
 class HomeCategoriesSection extends StatelessWidget {
   const HomeCategoriesSection({super.key});
@@ -21,7 +22,7 @@ class HomeCategoriesSection extends StatelessWidget {
           current is GetCategoriesError,
       builder: (context, state) {
         if (state is GetCategoriesLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const CategoryShimmer();
         }
 
         return Column(

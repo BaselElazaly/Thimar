@@ -8,6 +8,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:thimar/core/gen/assets.gen.dart';
 import 'package:thimar/core/services/location_service.dart';
 import 'package:thimar/core/services/service_locator.dart';
@@ -101,9 +102,12 @@ class _AddAddressViewState extends State<AddAddressView> {
                   bloc: cubit,
                   builder: (context, state) {
                     if (cubit.isLoadingLocation || cubit.currentLat == null) {
-                      return const Center(
-                        child:
-                            CircularProgressIndicator(color: AppColors.primary),
+                      return Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          color: Colors.white,
+                        ),
                       );
                     }
                     return Stack(

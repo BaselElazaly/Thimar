@@ -7,6 +7,7 @@ import 'package:thimar/core/services/service_locator.dart';
 import 'package:thimar/core/utils/app_colors.dart';
 import 'package:thimar/feture/home/cubit/home_cubit.dart';
 import 'package:thimar/feture/home/cubit/home_state.dart';
+import 'package:thimar/feture/home/widgets/slider_shimmer.dart';
 
 class HomeSliderSection extends StatefulWidget {
   const HomeSliderSection({super.key});
@@ -37,12 +38,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
           current is HomeSliderError,
       builder: (context, state) {
         if (state is HomeSliderLoading) {
-          return SizedBox(
-            height: screenHeight * 0.2,
-            child: const Center(
-              child: CircularProgressIndicator(color: AppColors.primary),
-            ),
-          );
+          return const SliderShimmer();
         } else if (state is HomeSliderSuccess) {
           return Stack(
             alignment: Alignment.center,

@@ -41,13 +41,11 @@ class HomeProductsSection extends StatelessWidget {
               current is SearchErrorState,
           builder: (context, state) {
             if (state is GetProductsLoading || state is SearchLoadingState) {
-             return const ProductShimmer();
+              return const ProductShimmer();
             }
             List<ProductModel> displayList = [];
             if (state is SearchSuccessState) {
               displayList = state.products;
-            } else if (state is SearchLoadingState) {
-              displayList = [];
             } else {
               displayList = cubit.products;
             }
